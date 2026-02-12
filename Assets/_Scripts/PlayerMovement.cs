@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotateSpeed = 100f;
 
     private Rigidbody rb;
+    private Animator animator;
 
     private float horizontal;
     private float vertical;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -35,5 +37,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetPos = rb.position + moveDir * moveSpeed * Time.fixedDeltaTime;
 
         rb.MovePosition(targetPos);
+
+        if (animator != null)
+        {
+            animator.SetFloat("BlendV", vertical);
+            animator.SetFloat("BlendH", horizontal);
+        }
     }
 }
