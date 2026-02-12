@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3.5f;
     [SerializeField] private float rotateSpeed = 100f;
+    [SerializeField] private float jumpForce = 5f;
 
     private Rigidbody rb;
     private Animator animator;
@@ -24,19 +25,24 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         mouseX = Input.GetAxis("Mouse X");
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     void FixedUpdate()
     {
-        // Rotate always (even when not moving)
-        Quaternion rotation = Quaternion.Euler(0, mouseX * rotateSpeed * Time.fixedDeltaTime, 0);
-        rb.MoveRotation(rb.rotation * rotation);
+        Vector3 movement = new Vector3(horizontal, 0f, vertical).normalized;
+        Vector3 rotateY = new Vector3(0, mouseX * rotateSpeed * Time.deltaTime, 0);
 
-        // Movement
-        Vector3 moveDir = transform.forward * vertical + transform.right * horizontal;
-        Vector3 targetPos = rb.position + moveDir * moveSpeed * Time.fixedDeltaTime;
+        if (movement != Vector3.zero)
+        {
+            rb.MoveRotation(rb.rotation * Quaternion.Euler(rotateY));
+        }
 
-        rb.MovePosition(targetPos);
+        rb.MovePosition(rb.position + (transform.forward * vertical + transform.right * horizontal) * moveSpeed * Time.deltaTime);
 
         if (animator != null)
         {
