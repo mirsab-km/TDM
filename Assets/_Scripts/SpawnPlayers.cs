@@ -7,6 +7,10 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
     public GameObject player;
     public Transform[] spawnPoints;
 
+    public GameObject[] weapons;
+    public Transform[] weaponSpawnPoints;
+    private float weaponRespawnTime = 10f;
+
     void Start()
     {
         // If we are already fully in the room, spawn immediately
@@ -36,5 +40,13 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
         Transform spawn = spawnPoints[index];
 
         PhotonNetwork.Instantiate(player.name, spawn.position, spawn.rotation);
+    }
+
+    public void WeaponSpawnStart()
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            PhotonNetwork.Instantiate(weapons[i].name, weaponSpawnPoints[i].position, Quaternion.Euler(0, 90,0));
+        }
     }
 }
