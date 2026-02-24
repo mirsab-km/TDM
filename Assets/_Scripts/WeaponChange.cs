@@ -23,6 +23,8 @@ public class WeaponChange : MonoBehaviour
     private Transform aimTarget;
 
     private int weaponCount;
+
+    private GameObject testForWeapons;
     void Start()
     {
         camObject = GameObject.Find("PlayerCamera");
@@ -37,6 +39,13 @@ public class WeaponChange : MonoBehaviour
         else
         {
             this.gameObject.GetComponent<PlayerMovement>().enabled = false;
+        }
+
+        testForWeapons = GameObject.Find("Weapon1Pickup(Clone)");
+        if (testForWeapons == null)
+        {
+            var spawner = GameObject.Find("Spawner");
+            spawner.GetComponent<SpawnPlayers>().WeaponSpawnStart();
         }
     }
 
