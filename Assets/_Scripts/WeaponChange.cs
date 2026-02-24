@@ -26,13 +26,13 @@ public class WeaponChange : MonoBehaviour
     void Start()
     {
         camObject = GameObject.Find("PlayerCamera");
-        aimTarget = GameObject.Find("AimRef").transform;
+        //aimTarget = GameObject.Find("AimRef").transform;
         if (this.gameObject.GetComponent<PhotonView>().IsMine)
         {
             cam = camObject.GetComponent<CinemachineVirtualCamera>();
             cam.Follow = this.gameObject.transform;
             cam.LookAt = this.gameObject.transform;
-            Invoke("LookAt", 0.1f);
+            //Invoke("LookAt", 0.1f);
         }
         else
         {
@@ -40,7 +40,7 @@ public class WeaponChange : MonoBehaviour
         }
     }
 
-    private void LookAt()
+    /*private void LookAt()
     {
         if (aimTarget != null)
         {
@@ -52,10 +52,12 @@ public class WeaponChange : MonoBehaviour
             }
             rig.Build();
         }
-    }
+    }*/
 
     void Update()
     {
+        if (!GetComponent<PhotonView>().IsMine) return;
+
         if (Input.GetMouseButtonDown(1))
         {
             weaponCount++;
