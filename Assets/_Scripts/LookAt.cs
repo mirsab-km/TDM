@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using Photon.Pun;
 
 public class LookAt : MonoBehaviour
 {
     private Vector3 screenPosition;
     private Vector3 worldPosition;
     [SerializeField] private GameObject crosshair;
+    [SerializeField] private TextMeshProUGUI playerName;
     void Start()
     {
-        
+        playerName.text = PhotonNetwork.LocalPlayer.NickName;
     }
 
     void FixedUpdate()

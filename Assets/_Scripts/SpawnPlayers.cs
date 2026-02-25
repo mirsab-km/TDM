@@ -1,7 +1,5 @@
 using UnityEngine;
 using Photon.Pun;
-
-// Use MonoBehaviourPunCallbacks so we can listen for the Join event
 public class SpawnPlayers : MonoBehaviourPunCallbacks
 {
     public GameObject player;
@@ -9,7 +7,6 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
 
     public GameObject[] weapons;
     public Transform[] weaponSpawnPoints;
-    private float weaponRespawnTime = 10f;
 
     void Start()
     {
