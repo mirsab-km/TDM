@@ -30,16 +30,16 @@ public class WeaponPickups : MonoBehaviour
     [PunRPC]
     private void TurnOff()
     {
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
         StartCoroutine(WaitToRespawn());
     }
 
     [PunRPC]
     private void TurnOn()
     {
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
         gameObject.GetComponent<BoxCollider>().enabled = true;
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private IEnumerator WaitToRespawn()
