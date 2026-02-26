@@ -1,3 +1,5 @@
+
+
 using UnityEngine;
 using Photon.Pun;
 public class SpawnPlayers : MonoBehaviourPunCallbacks
@@ -8,42 +10,32 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
     public GameObject[] weapons;
     public Transform[] weaponSpawnPoints;
 
-    void Start()
+    private void Start()
     {
-        // If we are already fully in the room, spawn immediately
         if (PhotonNetwork.InRoom)
         {
-            SpawnPlayer();
+            SpawnLocalPlayer();
         }
-        // If the scene loaded but we aren't "InRoom" yet, 
-        // the OnJoinedRoom() override below will catch it.
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom called from SpawnPlayers script");
-        SpawnPlayer();
+        SpawnLocalPlayer();
     }
 
-    void SpawnPlayer()
+    private void SpawnLocalPlayer()
     {
-        // Safety check: Don't spawn twice
-        if (PhotonView.Get(this) != null)
-        {
-            // Check if I already have a player object in the scene to prevent duplicates
-        }
-
-        int index = (PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length;
-        Transform spawn = spawnPoints[index];
-
+        Transform spawn = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount - 1];
         PhotonNetwork.Instantiate(player.name, spawn.position, spawn.rotation);
     }
+
 
     public void WeaponSpawnStart()
     {
         for (int i = 0; i < weapons.Length; i++)
         {
-            PhotonNetwork.Instantiate(weapons[i].name, weaponSpawnPoints[i].position, Quaternion.Euler(0, 90,0));
+            PhotonNetwork.Instantiate(weapons[i].name, weaponSpawnPoints[i].position, Quaternion.Euler(0, 90, 0));
         }
     }
 }
