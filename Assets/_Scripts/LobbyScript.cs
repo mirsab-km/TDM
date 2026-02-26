@@ -51,7 +51,11 @@ public class LobbyScript : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel(levelName);
         roomName.text = PhotonNetwork.CurrentRoom.Name;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(levelName);
+        }
     }
 }
