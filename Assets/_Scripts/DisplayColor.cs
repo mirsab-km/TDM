@@ -7,6 +7,16 @@ public class DisplayColor : MonoBehaviour
     public int[] buttonNumbers;
     public int[] viewID;
     public Color32[] colors;
+    public GameObject nameObject;
+
+    private void Start()
+    {
+        if (nameObject == null)
+        {
+            nameObject = GameObject.Find("NameBG");
+        }
+
+    }
     public void ChooseColor()
     {
         GetComponent<PhotonView>().RPC("AssignColor",
@@ -22,6 +32,9 @@ public class DisplayColor : MonoBehaviour
             {
                 this.transform.GetChild(2).GetComponent<Renderer>
                 ().material.color = colors[i];
+                nameObject.GetComponent<NickNames>().names[i].gameObject.SetActive(true);
+                nameObject.GetComponent<NickNames>().healthBars[i].gameObject.SetActive(true);
+                nameObject.GetComponent<NickNames>().names[i].text = GetComponent<PhotonView>().Owner.NickName;
             }
         }
     }

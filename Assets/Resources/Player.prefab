@@ -54779,6 +54779,7 @@ MonoBehaviour:
     rgba: 4294901760
   - serializedVersion: 2
     rgba: 4278222848
+  nameObject: {fileID: 0}
 --- !u!1 &8751365463483914438
 GameObject:
   m_ObjectHideFlags: 0
