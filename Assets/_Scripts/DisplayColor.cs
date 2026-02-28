@@ -7,7 +7,7 @@ public class DisplayColor : MonoBehaviour
     public int[] buttonNumbers;
     public int[] viewID;
     public Color32[] colors;
-    public GameObject nameObject;
+    private GameObject nameObject;
 
     private void Start()
     {

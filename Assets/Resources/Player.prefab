@@ -54631,6 +54631,11 @@ MonoBehaviour:
   - {fileID: 8866560603008953731}
   - {fileID: 5199171809470015799}
   - {fileID: 4041801384850534551}
+  weaponIcons:
+  - {fileID: 1348531188, guid: 0d65a125bec16524b880f24a27f03edc, type: 3}
+  - {fileID: -1750794214, guid: 0d65a125bec16524b880f24a27f03edc, type: 3}
+  - {fileID: 607842552, guid: 0d65a125bec16524b880f24a27f03edc, type: 3}
+  ammoAmts: 0a000000fa00000064000000
 --- !u!114 &4772480266702585246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54779,7 +54784,6 @@ MonoBehaviour:
     rgba: 4294901760
   - serializedVersion: 2
     rgba: 4278222848
-  nameObject: {fileID: 0}
 --- !u!1 &8751365463483914438
 GameObject:
   m_ObjectHideFlags: 0
