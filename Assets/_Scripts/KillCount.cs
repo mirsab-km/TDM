@@ -14,7 +14,7 @@ public class KillCount : MonoBehaviour
     void Start()
     {
         killCountPanel = GameObject.Find("KillCountPanel");
-        namesObject = GameObject.Find("NameBG");
+        namesObject = GameObject.Find("NamesBG");
         killCountPanel.SetActive(false);
     }
 
