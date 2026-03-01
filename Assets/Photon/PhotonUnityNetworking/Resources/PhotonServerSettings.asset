@@ -42,8 +42,6 @@ MonoBehaviour:
   - Change
   - SelectedColor
   - AssignColor
-  - Count
-  - CountDown
   - StartCountdown
   DisableAutoOpenWizard: 1
   ShowSettings: 0

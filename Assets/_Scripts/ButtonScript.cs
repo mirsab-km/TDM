@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System.Runtime.CompilerServices;
 public class ButtonScript : MonoBehaviour
 {
     private GameObject[] players;
     private int myID;
     private GameObject panel;
-    private GameObject nameObject;
+    private GameObject namesObject;
     private void Start()
     {
         Cursor.visible = true;
         panel = GameObject.Find("Color Panel");
-        nameObject = GameObject.Find("NameBG");
+        namesObject = GameObject.Find("NamesBG");
     }
     public void SelectButton(int buttonNumber)
     {
@@ -39,7 +40,7 @@ public class ButtonScript : MonoBehaviour
             players[i].GetComponent<DisplayColor>().viewID[buttonNumber] = myID;
             players[i].GetComponent<DisplayColor>().ChooseColor();
         }
-        nameObject.GetComponent<Timer>().BeginTimer();
+        namesObject.GetComponent<Timer>().BeginTimer();
         this.transform.gameObject.SetActive(false);
     }
 }
