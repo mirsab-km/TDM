@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using Cinemachine;
 using Photon.Pun;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Animations.Rigging;
+using UnityEngine.UI;
 
 public class WeaponChange : MonoBehaviour
 {
@@ -24,9 +26,15 @@ public class WeaponChange : MonoBehaviour
     private int weaponCount;
 
     private GameObject testForWeapons;
+    private Image weaponIcon;
+    private TextMeshProUGUI ammoAmtText;
+    public Sprite[] weaponIcons;
+    public int[] ammoAmts;
     void Start()
     {
         camObject = GameObject.Find("PlayerCamera");
+        weaponIcon = GameObject.Find("WeaponUI").GetComponent<Image>();
+        ammoAmtText = GameObject.Find("AmmoAmt").GetComponent<TextMeshProUGUI>();
         if (this.gameObject.GetComponent<PhotonView>().IsMine)
         {
             cam = camObject.GetComponent<CinemachineVirtualCamera>();
@@ -75,6 +83,8 @@ public class WeaponChange : MonoBehaviour
 
         //Turn on corresponding weapon and its rig values
         weapons[weaponCount].SetActive(true);
+        weaponIcon.GetComponent<Image>().sprite = weaponIcons[weaponCount];
+        ammoAmtText.text = ammoAmts[weaponCount].ToString();
         leftHand.data.target = leftTargets[weaponCount];
         rightHand.data.target = rightTargets[weaponCount];
         rig.Build();
