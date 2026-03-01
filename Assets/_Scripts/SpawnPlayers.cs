@@ -18,11 +18,11 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnJoinedRoom()
-    {
-        Debug.Log("OnJoinedRoom called from SpawnPlayers script");
-        SpawnLocalPlayer();
-    }
+    //public override void OnJoinedRoom()
+    //{
+    //    Debug.Log("OnJoinedRoom called from SpawnPlayers script");
+    //    SpawnLocalPlayer();
+    //}
 
     private void SpawnLocalPlayer()
     {
